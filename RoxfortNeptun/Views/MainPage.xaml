@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoxfortNeptun.MainPage"
+             Title="Login">
+
+    <Grid ColumnDefinitions="0.2*, 0.6*, 0.2*">
+        <BoxView Grid.Column="0" BackgroundColor="Transparent" />
+        <ScrollView
+            Grid.Column="1">
+            <VerticalStackLayout
+                Padding="20" Spacing="15">
+                <Image 
+                    Source="logo.webp"
+                    HeightRequest="100"
+                    WidthRequest="100"/>
+                <Label Text="Username"/>
+                <Entry Placeholder="Enter your username" />
+
+                <Label Text="Password"/>
+                <Entry Placeholder="Enter your password" IsPassword="True"/>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="Login"
+                            WidthRequest="250"
+                            Margin="5"
+                            Command="{Binding LoginCommand}"/>
+                    <Button Text="Forgot Password"
+                            WidthRequest="250"
+                            Margin="5"
+                            Command="{Binding ForgotPasswordCommand}"
+                            IsVisible="True"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+         </ScrollView>
+        <BoxView Grid.Column="2" BackgroundColor="Transparent" />
+    </Grid>
+
+
+</ContentPage>
