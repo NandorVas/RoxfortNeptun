@@ -21,7 +21,9 @@ namespace RoxfortNeptun
 
             // Page-ek regisztrálása
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<FirstPage>();
+            builder.Services.AddSingleton<ProfilPage>();
+            builder.Services.AddSingleton<SchedulePage>();
+            builder.Services.AddSingleton<TaskPage>();
 
 
             return builder.Build();

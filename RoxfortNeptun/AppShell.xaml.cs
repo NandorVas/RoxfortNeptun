@@ -10,7 +10,9 @@ namespace RoxfortNeptun
             InitializeComponent();
 
             Routing.RegisterRoute("MainPage", typeof(MainPage));
-            Routing.RegisterRoute("FirstPage", typeof(FirstPage));
+            Routing.RegisterRoute("ProfilPage", typeof(ProfilPage));
+            Routing.RegisterRoute("SchedulePage", typeof(SchedulePage));
+            Routing.RegisterRoute("TaskPage", typeof(TaskPage));
         }
     }
 }

@@ -1,8 +1,8 @@
 namespace RoxfortNeptun.Views;
 
-public partial class FirstPage : ContentPage
+public partial class TaskPage : ContentPage
 {
-	public FirstPage()
+	public TaskPage()
 	{
 		InitializeComponent();
 	}
