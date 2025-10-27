@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace RoxfortNeptun.Models
 {
     class ClassTask
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public int NumOfStuds { get; set; }
@@ -40,6 +42,11 @@ namespace RoxfortNeptun.Models
             {
                 endTime = startTime + TimeSpan.FromHours(1);
             }
+        }
+
+        public ClassTask()
+        {
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,14 @@ namespace RoxfortNeptun.Models
         Slytherin
     }
 
-    class Students
+    public class Students
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        [StringLength(6)]
         public string NeptunKod { get; set; }
+        public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Houses House { get; set; }
 
@@ -29,6 +33,7 @@ namespace RoxfortNeptun.Models
             this.NeptunKod = neptunKod;
             this.DateOfBirth = DateTime.MinValue;
             this.House = Houses.None;
+            this.Password = string.Empty; //ha empty, akkor még nem volt beállítva jelszó, még nem jelentkeztek be
         }
 
         public Students(string name, string neptunKod, DateTime birthdate)
@@ -47,6 +52,11 @@ namespace RoxfortNeptun.Models
             : this(name, neptunKod, birthdate)
         {
             this.House = house;
+        }
+
+        public Students()
+        {
+            
         }
     }
 }
