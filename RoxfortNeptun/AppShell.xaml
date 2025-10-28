@@ -12,29 +12,29 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />-->
 
+    <ShellContent Title="Home"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                      Route="MainPage" />
 
 
     <TabBar>
-        <Tab>
+        <Tab Title="ProfilPage">
             <ShellContent Title="ProfilPage"
                           ContentTemplate="{DataTemplate Views:ProfilPage}" 
                           Route="ProfilPage" />
         </Tab>
-        <Tab>
+        <Tab Title="SchedulePage">
             <ShellContent Title="SchedulePage"
-                          ContentTemplate="{DataTemplate views:SchedulePage}"
+                          ContentTemplate="{DataTemplate Views:SchedulePage}"
                           Route="SchedulePage" />
         </Tab>
-        <Tab>
+        <Tab Title="TaskPage">
             <ShellContent Title="TaskPage" 
-                          ContentTemplate="{DataTemplate views:TaskPage}"
+                          ContentTemplate="{DataTemplate Views:TaskPage}"
                           Route="TaskPage"/>
         </Tab>
     </TabBar>
 
-    <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainPage}"
-                      Route="MainPage" />
 
 
 </Shell>
