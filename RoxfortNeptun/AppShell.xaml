@@ -7,33 +7,29 @@
     x:Class="RoxfortNeptun.AppShell"
     Title="RoxfortNeptun">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
 
 
 
     <TabBar>
-        <Tab>
+            
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
             <ShellContent Title="ProfilPage"
                           ContentTemplate="{DataTemplate Views:ProfilPage}" 
                           Route="ProfilPage" />
-        </Tab>
-        <Tab>
             <ShellContent Title="SchedulePage"
                           ContentTemplate="{DataTemplate Views:SchedulePage}"
                           Route="SchedulePage" />
-        </Tab>
-        <Tab>
             <ShellContent Title="TaskPage" 
                           ContentTemplate="{DataTemplate Views:TaskPage}"
                           Route="TaskPage"/>
-        </Tab>
+            
+        <ShellContent Title="Log Off"
+                      ContentTemplate="{DataTemplate local:MainPage}"
+                      Route="MainPage" />
     </TabBar>
 
-    <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainPage}"
-                  Route="MainPage" />
 
 </Shell>

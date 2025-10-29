@@ -20,7 +20,7 @@ namespace RoxfortNeptun.ViewModels
         [RelayCommand]
         private async Task Login()
         {
-            await Shell.Current.GoToAsync("//FirstPage");
+            await Shell.Current.GoToAsync("//ProfilPage");
         }
 
         [RelayCommand]
