@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,12 +17,13 @@ namespace RoxfortNeptun.Models
         Slytherin
     }
 
+    [Table("Students")]
     public class Students
     {
-        [Key]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        [StringLength(6)]
+        [StringLength(6), Unique, NotNull]
         public string NeptunKod { get; set; }
         public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }

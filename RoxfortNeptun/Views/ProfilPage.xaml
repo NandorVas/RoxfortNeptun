@@ -3,10 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.ProfilPage"
              Title="ProfilPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        <ScrollView>
+            <VerticalStackLayout Padding="20">
+                <Label Text="Hallgatók listája" FontSize="20" FontAttributes="Bold"/>
+
+                <CollectionView ItemsSource="{Binding AllStudents}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding NeptunKod}"/>
+                                    <Label Text="{Binding House}"/>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
 </ContentPage>

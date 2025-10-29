@@ -1,6 +1,7 @@
 ﻿using RoxfortNeptun.ViewModels;
 using RoxfortNeptun.Views;
 using Microsoft.Extensions.Logging;
+using RoxfortNeptun.Models;
 
 namespace RoxfortNeptun
 {
@@ -16,8 +17,12 @@ namespace RoxfortNeptun
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
+            //Servicek regisztálása
+            builder.Services.AddSingleton<IDbContext, DbContext>();
+
             // ViewModel-ek regisztrálása
             builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddTransient<ProfilPageViewModel>();
 
             // Page-ek regisztrálása
             builder.Services.AddSingleton<MainPage>();
