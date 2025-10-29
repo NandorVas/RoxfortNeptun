@@ -11,21 +11,17 @@
 
 
     <TabBar>
-            
-        <ShellContent
-            Title="Home"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
-            <ShellContent Title="ProfilPage"
-                          ContentTemplate="{DataTemplate Views:ProfilPage}" 
-                          Route="ProfilPage" />
-            <ShellContent Title="SchedulePage"
+        <ShellContent Title="ProfilPage"
+                        ContentTemplate="{DataTemplate Views:ProfilPage}"
+                        Route="ProfilPage"
+            />
+        <ShellContent Title="SchedulePage"
                           ContentTemplate="{DataTemplate Views:SchedulePage}"
                           Route="SchedulePage" />
-            <ShellContent Title="TaskPage" 
+        <ShellContent Title="TaskPage" 
                           ContentTemplate="{DataTemplate Views:TaskPage}"
                           Route="TaskPage"/>
-            
+
         <ShellContent Title="Log Off"
                       ContentTemplate="{DataTemplate local:MainPage}"
                       Route="MainPage" />

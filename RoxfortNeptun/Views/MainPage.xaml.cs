@@ -11,7 +11,6 @@ namespace RoxfortNeptun
         public MainPage(MainViewModel viewModel)
         {
             InitializeComponent();
-
             BindingContext = viewModel;
         }
     }

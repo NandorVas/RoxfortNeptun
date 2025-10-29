@@ -2,9 +2,14 @@
 {
     public partial class App : Application
     {
-        public App()
+        public App(MainPage mainPage)
         {
             InitializeComponent();
+            MainPage = mainPage;
+        }
+
+        public void SwitchToMainApp()
+        {
             MainPage = new AppShell();
         }
     }
