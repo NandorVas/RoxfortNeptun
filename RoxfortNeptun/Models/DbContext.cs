@@ -128,5 +128,10 @@ namespace RoxfortNeptun.Models
         {
             return await _connection.UpdateAsync(item);
         }
+
+        public async Task<int> DeleteAsync<T>(T item) where T : class, new()
+        {
+            return await _connection.DeleteAsync(item);
+        }
     }
 }
