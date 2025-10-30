@@ -2,24 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.ProfilPage"
-             Title="ProfilPage">
-        <ScrollView>
-            <VerticalStackLayout Padding="20">
-                <Label Text="Hallgatók listája" FontSize="20" FontAttributes="Bold"/>
-
-                <CollectionView ItemsSource="{Binding AllStudents}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <VerticalStackLayout Padding="10">
-                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                    <Label Text="{Binding NeptunKod}"/>
-                                    <Label Text="{Binding House}"/>
-                                </VerticalStackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-        </ScrollView>
+             Title="Profil">
+        <VerticalStackLayout Padding="20" Spacing="8">
+                <Label Text="Current student:" FontAttributes="Bold"/>
+                <Label Text="{Binding CurrentStudent.Name}" FontSize="24"/>
+                <Label Text="{Binding DatabaseInfo}" FontSize="12" TextColor="Gray"/>
+        </VerticalStackLayout>
 </ContentPage>

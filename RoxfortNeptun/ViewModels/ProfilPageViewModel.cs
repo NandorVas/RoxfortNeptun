@@ -25,33 +25,32 @@ namespace RoxfortNeptun.ViewModels
         public ProfilPageViewModel(IDbContext database)
         {
             _database = database;
-            LoadData();
+            _ = LoadData();
         }
 
-        private async void LoadData()
+        private async Task LoadData()
         {
-            //await LoadCurrentStudent();
-            //await LoadAllStudents();
+            await LoadCurrentStudent();
+            await LoadAllStudents();
             UpdateDatabaseInfo();
         }
 
-        //private async Task LoadCurrentStudent()
-        //{
-        //    // Jelenlegi bejelentkezett hallgató
+        private async Task LoadCurrentStudent()
+        {
+            // Jelenlegi bejelentkezett hallgató
+            if (CurrentStudent == null)
+            {
+                // Ha nincs bejelentkezve, betöltjük az elsőt demo célra
+                var students = await _database.GetStudentsAsync();
+                CurrentStudent = students.FirstOrDefault();
+            }
+        }
 
-        //    if (CurrentStudent == null)
-        //    {
-        //        // Ha nincs bejelentkezve, betöltjük az elsőt demo célra
-        //        var students = await _database.GetStudentsAsync();
-        //        CurrentStudent = students.FirstOrDefault();
-        //    }
-        //}
-
-        //private async Task LoadAllStudents()
-        //{
-        //    // Összes hallgató betöltése
-        //    AllStudents = await _database.GetStudentsAsync();
-        //}
+        private async Task LoadAllStudents()
+        {
+            // Összes hallgató betöltése
+            AllStudents = (await _database.GetStudentsAsync()).ToList();
+        }
 
         public void UpdateDatabaseInfo()
         {
@@ -61,7 +60,7 @@ namespace RoxfortNeptun.ViewModels
         [RelayCommand]
         public async Task RefreshData()
         {
-            //await LoadAllStudents();
+            await LoadAllStudents();
             UpdateDatabaseInfo();
         }
 

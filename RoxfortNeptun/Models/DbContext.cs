@@ -110,5 +110,10 @@ namespace RoxfortNeptun.Models
             }
         }
 
+
+        public async Task<IEnumerable<Students>> GetStudentsAsync()
+        {
+            return await _connection.Table<Students>().ToListAsync();
+        }
     }
 }
