@@ -5,7 +5,5 @@ namespace RoxfortNeptun.Models
     {
         Task<bool> InitializeAsync();
         Task<int> InsertDemoDataAsync();
-        Task<IEnumerable<Students>> GetStudentsAsync();
-
     }
 }

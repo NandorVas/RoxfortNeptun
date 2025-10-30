@@ -42,7 +42,6 @@ namespace RoxfortNeptun.Models
             }
         }
 
-
         public async Task<int> InsertDemoDataAsync()
         {
             try
@@ -110,10 +109,24 @@ namespace RoxfortNeptun.Models
             }
         }
 
-
-        public async Task<IEnumerable<Students>> GetStudentsAsync()
+        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : class, new()
         {
-            return await _connection.Table<Students>().ToListAsync();
+            return await _connection.Table<T>().ToListAsync();
+        }
+
+        public async Task<T> GetByIdASync<T>(object id) where T : class, new()
+        {
+            return await _connection.FindAsync<T>(id);
+        }
+
+        public async Task<int> CreateAsync<T>(T item) where T : class, new()
+        {
+            return await _connection.InsertAsync(item);
+        }
+
+        public async Task<int> UpdateAsync<T>(T item) where T : class, new()
+        {
+            return await _connection.UpdateAsync(item);
         }
     }
 }

@@ -41,15 +41,15 @@ namespace RoxfortNeptun.ViewModels
             if (CurrentStudent == null)
             {
                 // Ha nincs bejelentkezve, betöltjük az elsőt demo célra
-                var students = await _database.GetStudentsAsync();
-                CurrentStudent = students.FirstOrDefault();
+                //var students = await _database.GetStudentsAsync();  vissza kell majd kommentelni
+                //CurrentStudent = students.FirstOrDefault();
             }
         }
 
         private async Task LoadAllStudents()
         {
             // Összes hallgató betöltése
-            AllStudents = (await _database.GetStudentsAsync()).ToList();
+            //AllStudents = (await _database.GetStudentsAsync()).ToList();  vissza kell majd kommentelni
         }
 
         public void UpdateDatabaseInfo()
