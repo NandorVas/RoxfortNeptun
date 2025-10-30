@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 using RoxfortNeptun.Services;
 using System;
 using System.Collections.Generic;
@@ -30,8 +32,8 @@ namespace RoxfortNeptun.ViewModels
         [RelayCommand]
         private async Task ForgotPassword()
         {
-            await Shell.Current.DisplayAlert("Csicska!",
-                "Balfasz, szólj egy tanárnak.", "OK");
+            WeakReferenceMessenger.Default.Send(
+                 new ValueChangedMessage<(string Title, string Content)>(("Csicska!", "Balfasz, szólj egy tanárnak.")));
         }
     }
 }
