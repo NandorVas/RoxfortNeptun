@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CloudKit;
+using CommunityToolkit.Mvvm.Messaging;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,29 @@ namespace RoxfortNeptun.Models
                 foreach (var task in demoClassTasks)
                 {
                     await _connection.InsertAsync(task);
+                }
+
+                var demoEnrollments = new List<StudentClassTask>
+                {
+                    // Harry Potter felvételei
+                    new StudentClassTask { StudentId = 1, ClassTaskId = 1 }, // Bájitaltan
+                    new StudentClassTask { StudentId = 1, ClassTaskId = 2 }, // Átváltoztatástan
+                    new StudentClassTask { StudentId = 1, ClassTaskId = 4 }, // Gyógynövénytan
+    
+                    // Hermione felvételei
+                    new StudentClassTask { StudentId = 2, ClassTaskId = 1 }, // Bájitaltan
+                    new StudentClassTask { StudentId = 2, ClassTaskId = 2 }, // Átváltoztatástan
+                    new StudentClassTask { StudentId = 2, ClassTaskId = 3 }, // Varázslattan
+                    new StudentClassTask { StudentId = 2, ClassTaskId = 4 }, // Gyógynövénytan
+    
+                    // Draco felvételei
+                    new StudentClassTask { StudentId = 4, ClassTaskId = 1 }, // Bájitaltan
+                    new StudentClassTask { StudentId = 4, ClassTaskId = 3 }, // Varázslattan
+                };
+
+                foreach (var enrollment in demoEnrollments)
+                {
+                    await _connection.InsertAsync(enrollment);
                 }
 
                 return 1;
