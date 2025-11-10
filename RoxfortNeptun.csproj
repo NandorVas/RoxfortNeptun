@@ -1,0 +1,4 @@
+  <!-- If the file is explicitly referenced in the project, update the Include -->
+  <ItemGroup>
+    <MauiAsset Include="Resources/Images/cloud_2025_26_1_lecture08_v2a.pdf" />
+  </ItemGroup>

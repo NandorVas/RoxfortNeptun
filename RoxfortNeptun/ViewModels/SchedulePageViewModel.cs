@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RoxfortNeptun.ViewModels
 {
-    public partial class ProfilPageViewModel : ObservableObject
+    public partial class SchedulePageViewModel : ObservableObject
     {
         [RelayCommand]
         private async void LogOut()

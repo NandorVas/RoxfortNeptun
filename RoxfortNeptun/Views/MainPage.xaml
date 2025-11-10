@@ -31,7 +31,7 @@
                             IsVisible="True"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
-         </ScrollView>
+        </ScrollView>
         <BoxView Grid.Column="2" BackgroundColor="Transparent" />
     </Grid>
 

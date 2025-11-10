@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RoxfortNeptun.Models
 {
     [Table("ClassTasks")]
-    class ClassTask
+    public class ClassTask
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

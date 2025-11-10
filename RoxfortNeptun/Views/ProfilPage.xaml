@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.ProfilPage"
              Title="Profil">
-        <VerticalStackLayout Padding="20" Spacing="8">
-                <Label Text="Current student:" FontAttributes="Bold"/>
-                <Label Text="{Binding CurrentStudent.Name}" FontSize="24"/>
-                <Label Text="{Binding DatabaseInfo}" FontSize="12" TextColor="Gray"/>
-        </VerticalStackLayout>
+    <VerticalStackLayout Padding="20" Spacing="8">
+        <Label Text="Current student:" FontAttributes="Bold"/>
+        <Label Text="{Binding CurrentStudent.Name}" FontSize="24"/>
+        <Label Text="{Binding DatabaseInfo}" FontSize="12" TextColor="Gray"/>
+
+        <Button Text="Log Out"
+                Command="{Binding LogOutCommand}"
+                IsVisible="True"/>
+    </VerticalStackLayout>
 </ContentPage>

@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace RoxfortNeptun.ViewModels
 {
-    
-    public partial class MainViewModel: ObservableObject
+
+    public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
         private string username;
@@ -23,7 +23,7 @@ namespace RoxfortNeptun.ViewModels
         [RelayCommand]
         private async Task Login()
         {
-            if(Application.Current is App app)
+            if (Application.Current is App app)
             {
                 app.SwitchToMainApp();
             }

@@ -5,6 +5,7 @@ namespace RoxfortNeptun
     public partial class App : Application
     {
         private readonly IDbContext _context;
+        private MainPage login;
 
         public App(MainPage mainPage, IDbContext context)
         {
@@ -14,6 +15,7 @@ namespace RoxfortNeptun
             Task.Run(async () => await InitializeDatabase());
 
             MainPage = mainPage;
+            login = mainPage;
         }
 
         private async Task InitializeDatabase()
@@ -32,6 +34,11 @@ namespace RoxfortNeptun
         public void SwitchToMainApp()
         {
             MainPage = new AppShell();
+        }
+
+        public void SwitchToLogInApp()
+        {
+            MainPage = login;
         }
     }
 }
