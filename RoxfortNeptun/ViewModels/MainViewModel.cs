@@ -14,11 +14,33 @@ namespace RoxfortNeptun.ViewModels
 
     public partial class MainViewModel : ObservableObject
     {
+        private readonly AuthService authService;
+
         [ObservableProperty]
         private string username;
 
         [ObservableProperty]
         private string password;
+        [ObservableProperty]
+        private bool isLoggedIn;
+
+        public MainViewModel(AuthService auth)
+        {
+            this.authService = auth;
+            UpdateUserState();
+
+            authService.AuthenticationStateChangedEvent += AuthServiceAuthenticationStateChangedEvent;
+        }
+
+        private void AuthServiceAuthenticationStateChangedEvent(object? sender, AuthenticationStateChangedEventArgs e)
+        {
+            UpdateUserState();
+        }
+
+        private void UpdateUserState()
+        {
+
+        }
 
         [RelayCommand]
         private async Task Login()

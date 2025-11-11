@@ -137,7 +137,7 @@ namespace RoxfortNeptun.Models
             return await _connection.Table<T>().ToListAsync();
         }
 
-        public async Task<T> GetByIdASync<T>(object id) where T : class, new()
+        public async Task<T> GetByIdASync<T>(string id) where T : class, new()
         {
             return await _connection.FindAsync<T>(id);
         }

@@ -18,23 +18,24 @@ namespace RoxfortNeptun.Models
     }
 
     [Table("Students")]
-    public class Students
+    public class Students: IUser
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
         [StringLength(6), Unique, NotNull]
-        public string NeptunKod { get; set; }
+        public string Neptunkod { get; set; }
         public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public Houses House { get; set; }
+        public Houses Houses { get; set; }
+        public UserType Type { get; set; } = UserType.Student;
 
         public Students(string name, string neptunKod)
         {
             this.Name = name;
-            this.NeptunKod = neptunKod;
+            this.Neptunkod = neptunKod;
             this.DateOfBirth = DateTime.MinValue;
-            this.House = Houses.None;
+            this.Houses = Houses.None;
             this.Password = string.Empty; //ha empty, akkor még nem volt beállítva jelszó, még nem jelentkeztek be
         }
 
@@ -47,13 +48,13 @@ namespace RoxfortNeptun.Models
         public Students(string name, string neptunKod, Houses house)
             :this(name, neptunKod)
         {
-            this.House = house;
+            this.Houses = house;
         }
 
         public Students(string name, string neptunKod, DateTime birthdate, Houses house)
             : this(name, neptunKod, birthdate)
         {
-            this.House = house;
+            this.Houses = house;
         }
 
         public Students()
