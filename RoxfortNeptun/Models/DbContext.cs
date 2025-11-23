@@ -19,6 +19,8 @@ namespace RoxfortNeptun.Models
             _connection = new SQLiteAsyncConnection(databasePath, flags);
         }
 
+        //asd
+
         public async Task<bool> InitializeAsync()
         {
             try
