@@ -51,11 +51,11 @@ namespace RoxfortNeptun.Models
                 // Demo tanárok
                 var demoTeachers = new List<Teachers>
                 {
-                    new Teachers("Perselus Piton") { Neptunkod = "PPITON", WhichHousesHead = Houses.Slytherin },
-                    new Teachers("Albus Dumbledore") { Neptunkod = "ADUMBL", WhichHousesHead = Houses.None },
-                    new Teachers("Minerva McGalagony") { Neptunkod = "MMCGAL", WhichHousesHead = Houses.Gryffindor },
-                    new Teachers("Filius Fricsik") { Neptunkod = "FFRICSI", WhichHousesHead = Houses.Ravenclaw },
-                    new Teachers("Pomona Bimba") { Neptunkod = "PBIMBA", WhichHousesHead = Houses.Hufflepuff }
+                    new Teachers("Perselus Piton") { NeptunKod = "PPITON", House = Houses.Slytherin },
+                    new Teachers("Albus Dumbledore") { NeptunKod = "ADUMBL", House = Houses.None },
+                    new Teachers("Minerva McGalagony") { NeptunKod   = "MMCGAL", House = Houses.Gryffindor },
+                    new Teachers("Filius Fricsik") { NeptunKod = "FFRICSI", House = Houses.Ravenclaw },
+                    new Teachers("Pomona Bimba") { NeptunKod = "PBIMBA", House = Houses.Hufflepuff }
                 };
 
                 foreach (var teacher in demoTeachers)

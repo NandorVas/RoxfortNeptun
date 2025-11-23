@@ -18,7 +18,7 @@ namespace RoxfortNeptun.Models
     }
 
     [Table("Students")]
-    public class Students
+    public class Students: IUser
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -28,6 +28,7 @@ namespace RoxfortNeptun.Models
         public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Houses House { get; set; }
+        public UserType UserType { get { return UserType.Student; } }
 
         public Students(string name, string neptunKod)
         {
