@@ -12,15 +12,15 @@ namespace RoxfortNeptun.Services
         Task<LoginResult> LoginAsync(string neptunKod, string password);
         void Logout();
         bool IsAuthenticated { get; }
-        Students CurrentStudent { get; }
+        IUser CurrentUser { get; }
         event EventHandler<AuthenticationStateChangedEventArgs> AuthenticationStateChanged;
     }
 
     public class LoginResult
     { 
-        bool Success { get; set; } 
-        string Message { get; set; }
-        IUser User { get; set; }
+        public bool Success { get; set; } 
+        public string Message { get; set; }
+        public IUser User { get; set; }
     }
 
     public class AuthenticationStateChangedEventArgs : EventArgs

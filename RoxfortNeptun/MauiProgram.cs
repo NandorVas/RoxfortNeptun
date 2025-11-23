@@ -2,6 +2,7 @@
 using RoxfortNeptun.Views;
 using Microsoft.Extensions.Logging;
 using RoxfortNeptun.Models;
+using RoxfortNeptun.Services;
 
 namespace RoxfortNeptun
 {
@@ -19,6 +20,7 @@ namespace RoxfortNeptun
 
             //Servicek regisztálása
             builder.Services.AddSingleton<IDbContext, DbContext>();
+            builder.Services.AddSingleton<IAuthService, AuthService>();
 
             // ViewModel-ek regisztrálása
             builder.Services.AddSingleton<MainViewModel>();
