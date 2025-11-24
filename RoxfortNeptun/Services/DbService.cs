@@ -7,7 +7,7 @@ using RoxfortNeptun.Models;
 
 namespace RoxfortNeptun.Services
 {
-    public class DbService
+    public class DbService : IDbService
     {
         private readonly IDbContext _dbContext;
 
@@ -26,27 +26,27 @@ namespace RoxfortNeptun.Services
             return await _dbContext.InsertDemoDataAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : class, new()
+        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : IUser, new()
         {
             return await _dbContext.GetAllAsync<T>();
-        } 
-
-        public async Task<T> GetByIdAsync<T>(object id) where T : class, new()
-        {
-            return await _dbContext.GetByIdASync<T>(id);
         }
 
-        public async Task<int> CreateAsync<T>(T item) where T : class, new()
+        public async Task<T> GetByIdAsync<T>(string neptunKod) where T : IUser, new()
+        {
+            return await _dbContext.GetByIdASync<T>(neptunKod);
+        }
+
+        public async Task<int> CreateAsync<T>(T item) where T : IUser, new()
         {
             return await _dbContext.CreateAsync<T>(item);
         }
 
-        public async Task<int> UpdateAsync<T>(T item) where T : class, new()
+        public async Task<int> UpdateAsync<T>(T item) where T : IUser, new()
         {
             return await _dbContext.UpdateAsync<T>(item);
         }
 
-        public async Task<int> DeleteAsync<T>(T item) where T : class, new()
+        public async Task<int> DeleteAsync<T>(T item) where T : IUser, new()
         {
             return await _dbContext.DeleteAsync<T>(item);
         }

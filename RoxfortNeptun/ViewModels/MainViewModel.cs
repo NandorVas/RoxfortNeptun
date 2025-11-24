@@ -27,11 +27,15 @@ namespace RoxfortNeptun.ViewModels
 
         public MainViewModel(IAuthService auth) : base(auth)
         {
+            this._authService = auth;
         }
 
         [RelayCommand]
         private async Task Login()
         {
+            this.Username = Username;
+            this.Password = Password;
+
             if (IsLogginIn) return;
            
             IsLogginIn = true;

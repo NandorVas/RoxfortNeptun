@@ -5,11 +5,11 @@ namespace RoxfortNeptun
 {
     public partial class App : Application
     {
-        private readonly IDbContext _context;
+        private readonly IDbService _context;
         private readonly IAuthService _authService;
         private MainPage login;
 
-        public App(MainPage mainPage, IDbContext context, IAuthService authService)
+        public App(MainPage mainPage, IDbService context, IAuthService authService)
         {
             InitializeComponent();
             _context = context;

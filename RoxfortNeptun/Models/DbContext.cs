@@ -19,7 +19,11 @@ namespace RoxfortNeptun.Models
             _connection = new SQLiteAsyncConnection(databasePath, flags);
         }
 
-        //asd
+        // Test-friendly constructor: allows injecting a preconfigured SQLiteAsyncConnection (e.g. in-memory)
+        public DbContext(SQLiteAsyncConnection connection)
+        {
+            _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+        }
 
         public async Task<bool> InitializeAsync()
         {
@@ -134,27 +138,27 @@ namespace RoxfortNeptun.Models
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : class, new()
+        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : IUser, new()
         {
             return await _connection.Table<T>().ToListAsync();
         }
 
-        public async Task<T> GetByIdASync<T>(object id) where T : class, new()
+        public async Task<T> GetByIdASync<T>(string neptunKod) where T : IUser, new()
         {
-            return await _connection.FindAsync<T>(id);
+            return await _connection.Table<T>().Where(x => x.NeptunKod == neptunKod).FirstOrDefaultAsync();
         }
 
-        public async Task<int> CreateAsync<T>(T item) where T : class, new()
+        public async Task<int> CreateAsync<T>(T item) where T : IUser, new()
         {
             return await _connection.InsertAsync(item);
         }
 
-        public async Task<int> UpdateAsync<T>(T item) where T : class, new()
+        public async Task<int> UpdateAsync<T>(T item) where T : IUser, new()
         {
             return await _connection.UpdateAsync(item);
         }
 
-        public async Task<int> DeleteAsync<T>(T item) where T : class, new()
+        public async Task<int> DeleteAsync<T>(T item) where T : IUser, new()
         {
             return await _connection.DeleteAsync(item);
         }

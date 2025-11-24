@@ -21,6 +21,7 @@ namespace RoxfortNeptun
             //Servicek regisztálása
             builder.Services.AddSingleton<IDbContext, DbContext>();
             builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddSingleton<IDbService, DbService>();
 
             // ViewModel-ek regisztrálása
             builder.Services.AddSingleton<MainViewModel>();

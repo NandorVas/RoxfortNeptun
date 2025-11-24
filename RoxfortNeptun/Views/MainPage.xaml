@@ -15,10 +15,10 @@
                     HeightRequest="100"
                     WidthRequest="100"/>
                 <Label Text="Username"/>
-                <Entry Placeholder="Enter your username" />
+                <Entry Placeholder="Enter your username" Text="{Binding Username}" x:Name="UsernameEntry"/>
 
                 <Label Text="Password"/>
-                <Entry Placeholder="Enter your password" IsPassword="True"/>
+                <Entry Placeholder="Enter your password" IsPassword="True" Text="{Binding Password}" x:Name="PasswordEntry"/>
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <Button Text="Login"
                             WidthRequest="250"
