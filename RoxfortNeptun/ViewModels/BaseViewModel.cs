@@ -2,11 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using RoxfortNeptun.Models;
 using RoxfortNeptun.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoxfortNeptun.ViewModels
 {
@@ -41,7 +36,7 @@ namespace RoxfortNeptun.ViewModels
         {
             CurrentUser = _authService.CurrentUser;
             IsLoggedIn = _authService.IsAuthenticated;
-            Name = CurrentUser.Name ?? "Vendég";
+            Name = CurrentUser?.Name ?? "Vendég";
         }
 
         [RelayCommand]

@@ -12,20 +12,57 @@ using System.Threading.Tasks;
 namespace RoxfortNeptun.ViewModels
 {
 
-    public partial class MainViewModel : ObservableObject
+    public partial class MainViewModel : BaseViewModel
     {
+        private readonly IAuthService _authService;
+
         [ObservableProperty]
         private string username;
 
         [ObservableProperty]
         private string password;
 
+        [ObservableProperty]
+        private bool isLogginIn;
+
+        public MainViewModel(IAuthService auth) : base(auth)
+        {
+        }
+
         [RelayCommand]
         private async Task Login()
         {
-            if (Application.Current is App app)
+            if (IsLogginIn) return;
+           
+            IsLogginIn = true;
+
+            try
             {
-                app.SwitchToMainApp();
+                if(string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+                {
+                    await App.Current.MainPage.DisplayAlert("Hiba", "Kérem töltse ki az összes mezőt!", "OK");
+
+                    return;
+                }
+
+                var result = await _authService.LoginAsync(Username, Password);
+
+                if (result.Success)
+                {
+                    if(Application.Current is App app)
+                    {
+                        app.SwitchToMainApp();
+                    }
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Hiba", result.Message, "OK");
+                }
+
+            }
+            finally
+            {
+                IsLogginIn = false;
             }
         }
 
