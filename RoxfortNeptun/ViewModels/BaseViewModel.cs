@@ -43,7 +43,18 @@ namespace RoxfortNeptun.ViewModels
         private async Task Logout()
         {
             _authService.Logout();
-            await Shell.Current.GoToAsync("//LoginPage");
+
+            if(Application.Current is App app)
+            {
+                app.SwitchToMainApp();
+                return;
+            }
+
+
+            if(Shell.Current != null)
+            {
+                await Shell.Current.GoToAsync("//MainPage");
+            }
         }
     }
 }

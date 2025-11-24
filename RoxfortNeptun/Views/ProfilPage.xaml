@@ -5,11 +5,13 @@
              Title="Profil">
     <VerticalStackLayout Padding="20" Spacing="8">
         <Label Text="Current student:" FontAttributes="Bold"/>
-        <Label Text="{Binding CurrentStudent.Name}" FontSize="24"/>
+        <!-- Use BaseViewModel.Name (kept in sync with AuthService.CurrentUser) -->
+        <Label Text="{Binding Name}" FontSize="24"/>
         <Label Text="{Binding DatabaseInfo}" FontSize="12" TextColor="Gray"/>
 
+        <!-- Use the inherited LogoutCommand from BaseViewModel -->
         <Button Text="Log Out"
-                Command="{Binding LogOutCommand}"
-                IsVisible="True"/>
+                Command="{Binding LogoutCommand}"
+                IsVisible="{Binding IsLoggedIn}"/>
     </VerticalStackLayout>
 </ContentPage>
