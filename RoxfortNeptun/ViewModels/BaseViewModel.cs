@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using RoxfortNeptun.Models;
 using RoxfortNeptun.Services;
+using Microsoft.Maui.Controls;
 
 namespace RoxfortNeptun.ViewModels
 {
@@ -44,14 +45,15 @@ namespace RoxfortNeptun.ViewModels
         {
             _authService.Logout();
 
-            if(Application.Current is App app)
+            // Use the App helper that switches MainPage back to the stored login page.
+            if (Application.Current is App app)
             {
-                app.SwitchToMainApp();
+                app.SwitchToLogInApp();
                 return;
             }
 
-
-            if(Shell.Current != null)
+            // Fallback: if the app is running inside a Shell, navigate via Shell.
+            if (Shell.Current != null)
             {
                 await Shell.Current.GoToAsync("//MainPage");
             }
