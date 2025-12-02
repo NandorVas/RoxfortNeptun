@@ -9,7 +9,7 @@ using SQLite;
 namespace RoxfortNeptun.Models
 {
     [Table("Teachers")]
-    class Teachers : IUser
+    public class Teachers : IUser
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

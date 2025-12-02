@@ -11,6 +11,5 @@ namespace RoxfortNeptun.Services
         Task<bool> InitializeAsync();
         Task<int> InsertDemoDataAsync();
         Task<int> UpdateAsync<T>(T item) where T : IUser, new();
-        Task<int> GetTableCountsAsync();
     }
 }
