@@ -5,6 +5,7 @@
     xmlns:local="clr-namespace:RoxfortNeptun"
     xmlns:Views="clr-namespace:RoxfortNeptun.Views"
     x:Class="RoxfortNeptun.AppShell"
+    FlyoutBehavior="Disabled"
     Title="RoxfortNeptun">
 
     <TabBar>

@@ -12,29 +12,21 @@ namespace RoxfortNeptun.ViewModels
         private readonly IDbContext _dbContext;
 
         [ObservableProperty]
-        private ObservableCollection<ClassTask> tasks = new();
+        private ObservableCollection<ClassTask> tasks;
 
         public SchedulePageViewModel(IAuthService auth, IDbContext dbContext) : base(auth)
         {
             _dbContext = dbContext;
+            Tasks = new ObservableCollection<ClassTask>();
         }
 
         // Public loader you can call from the page
         public async Task LoadTasksAsync()
         {
-            if (CurrentUser == null)
-            {
-                Tasks = new ObservableCollection<ClassTask>();
-                return;
-            }
+            var Ids = _dbContext.GetTasksForStudentAsync(CurrentUser.Id); // ez sem fog majd kellenei.
 
-            var list = await _dbContext.GetTasksForStudentAsync(CurrentUser.Id);
-            Tasks = new ObservableCollection<ClassTask>(list);
         }
 
-        // Optional command for pull-to-refresh or button
-        [RelayCommand]
-        private async Task Refresh() => await LoadTasksAsync();
 
         [RelayCommand]
         private async void LogOut()

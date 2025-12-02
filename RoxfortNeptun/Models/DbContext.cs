@@ -164,21 +164,15 @@ namespace RoxfortNeptun.Models
             return await _connection.DeleteAsync(item);
         }
 
-        public async Task<IEnumerable<ClassTask>> GetTasksForStudentAsync(int studentId)
+        public async Task<List<int>> GetTasksForStudentAsync(int studentId)
         {
-            var enrollments = await _connection.Table<StudentClassTask>()
-                                               .Where(e => e.StudentId == studentId && e.IsActive)
-                                               .ToListAsync();
+            var tasks = await _connection.Table<StudentClassTask>().Where(p => studentId == p.StudentId).ToListAsync();
 
-            if (enrollments == null || enrollments.Count == 0)
-                return Enumerable.Empty<ClassTask>();
+            var taskIds = tasks.Select(t => t.ClassTaskId).ToList();
 
-            var ids = enrollments.Select(e => e.ClassTaskId).Distinct().ToArray();
-            // Build parameter placeholders safely
-            var placeholders = string.Join(",", ids.Select((_, i) => $"@p{i}"));
-            var parameters = ids.Cast<object>().ToArray();
-            var sql = $"SELECT * FROM ClassTasks WHERE Id IN ({placeholders})";
-            return await _connection.QueryAsync<ClassTask>(sql, parameters);
+            return taskIds;
         }
+
+        //Itt felsőből meghívni, és csak ezt fogom továbbadni a viewmodellbe
     }
 }
