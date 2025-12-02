@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoxfortNeptun.Models
 {
-    public class DbContext : IDbContext
+    public class DbContext: IDbContext
     {
         private SQLiteAsyncConnection _connection;
 
@@ -19,7 +19,6 @@ namespace RoxfortNeptun.Models
             _connection = new SQLiteAsyncConnection(databasePath, flags);
         }
 
-        // Test-friendly constructor: allows injecting a preconfigured SQLiteAsyncConnection (e.g. in-memory)
         public DbContext(SQLiteAsyncConnection connection)
         {
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
@@ -32,7 +31,7 @@ namespace RoxfortNeptun.Models
                 await _connection.CreateTableAsync<Students>();
                 await _connection.CreateTableAsync<Teachers>();
                 await _connection.CreateTableAsync<ClassTask>();
-                await _connection.CreateTableAsync<StudentClassTask>(); // Add this line to create the StudentClassTask table
+                await _connection.CreateTableAsync<StudentClassTask>();
 
                 var studentCount = await _connection.Table<Students>().CountAsync();
                 if (studentCount == 0)
@@ -164,7 +163,7 @@ namespace RoxfortNeptun.Models
             return await _connection.DeleteAsync(item);
         }
 
-        public async Task<List<int>> GetTasksForStudentAsync(int studentId)
+        private async Task<List<int>> GetTasksForStudentAsync(int studentId)
         {
             var tasks = await _connection.Table<StudentClassTask>().Where(p => studentId == p.StudentId).ToListAsync();
 
@@ -173,6 +172,39 @@ namespace RoxfortNeptun.Models
             return taskIds;
         }
 
-        //Itt felsőből meghívni, és csak ezt fogom továbbadni a viewmodellbe
+        private async Task<List<ClassTask>> GetClassTasksByIdsAsync(int studentId)
+        {
+            var taskIds = await GetTasksForStudentAsync(studentId);
+            var classTasks = await _connection.Table<ClassTask>()
+                .Where(ct => taskIds.Contains(ct.Id))
+                .ToListAsync();
+
+            return classTasks;
+        }
+
+        public async Task<IEnumerable<ClassTask>> GetClassTasksAsync(int studentId)
+        {
+            return await GetClassTasksByIdsAsync(studentId); // already returns List<ClassTask>
+        }
+
+        public async Task<int> GetTableCountsAsync()
+        {
+            var students = await _connection.Table<Students>().CountAsync();
+            var classTasks = await _connection.Table<ClassTask>().CountAsync();
+            var enrollments = await _connection.Table<StudentClassTask>().CountAsync();
+            return (students);
+        }
+
+        public async Task<List<StudentClassTask>> GetEnrollmentsForStudentAsync(int studentId)
+        {
+            return await _connection.Table<StudentClassTask>().Where(p => p.StudentId == studentId).ToListAsync();
+        }
+
+        public async Task<List<ClassTask>> GetClassTasksForStudentByJoinAsync(int studentId)
+        {
+            // Single SQL join to avoid LINQ translation issues and to validate relationship rows
+            var sql = "SELECT ct.* FROM ClassTasks ct INNER JOIN StudentClassTask sct ON ct.Id = sct.ClassTaskId WHERE sct.StudentId = ?";
+            return await _connection.QueryAsync<ClassTask>(sql, studentId);
+        }
     }
 }

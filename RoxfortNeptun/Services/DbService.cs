@@ -50,5 +50,10 @@ namespace RoxfortNeptun.Services
         {
             return await _dbContext.DeleteAsync<T>(item);
         }
+
+        public async Task<int> GetTableCountsAsync()
+        {
+            return await _dbContext.GetTableCountsAsync();
+        }
     }
 }

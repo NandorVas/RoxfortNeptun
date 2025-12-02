@@ -10,6 +10,9 @@ namespace RoxfortNeptun.Models
         Task<bool> InitializeAsync();
         Task<int> InsertDemoDataAsync();
         Task<int> UpdateAsync<T>(T item) where T : IUser, new();
-        Task<List<int>> GetTasksForStudentAsync(int studentId);
+        Task<IEnumerable<ClassTask>> GetClassTasksAsync(int studentId);
+        Task<int> GetTableCountsAsync();
+        Task<List<StudentClassTask>> GetEnrollmentsForStudentAsync(int studentId);
+        Task<List<ClassTask>> GetClassTasksForStudentByJoinAsync(int studentId);
     }
 }

@@ -3,25 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.SchedulePage"
              Title="Schedule">
-
-    <RefreshView Command="{Binding RefreshCommand}">
-        <CollectionView ItemsSource="{Binding Tasks}" EmptyView="No tasks">
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding ClassTasks}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" Margin="6" HasShadow="True">
+                    <Frame Margin="8" Padding="10" CornerRadius="8">
                         <VerticalStackLayout>
                             <Label Text="{Binding Name}" FontAttributes="Bold" />
                             <Label Text="{Binding Place}" />
-                            <HorizontalStackLayout Spacing="8">
-                                <Label Text="{Binding StartTime}" />
+                            <HorizontalStackLayout Spacing="12">
+                                <Label Text="{Binding StartTimeDisplay}" />
                                 <Label Text="–" />
-                                <Label Text="{Binding EndTime}" />
+                                <Label Text="{Binding EndTimeDisplay}" />
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </RefreshView>
-
+    </ContentPage.Content>
 </ContentPage>

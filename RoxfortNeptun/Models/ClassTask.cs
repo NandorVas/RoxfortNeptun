@@ -1,10 +1,5 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoxfortNeptun.Models
 {
@@ -18,37 +13,41 @@ namespace RoxfortNeptun.Models
         public string Place { get; set; }
         public int Teacher { get; set; }
         public bool IsClass { get; set; } = true;
-        public TimeSpan ?StartTime { get; set; } // need to parse
-        public TimeSpan ?EndTime { get; set; } // need to parse
-        public TimeSpan ?Duration => EndTime - StartTime;
+        public TimeSpan? StartTime { get; set; }
+        public TimeSpan? EndTime { get; set; }
+        public TimeSpan? Duration => EndTime - StartTime;
 
-        public ClassTask(string name, int numofstuds, string place, int teacher, bool ?isCLass, TimeSpan ?startTime, TimeSpan ?endTime)
+        // Compatibility convenience (older XAML used Room)
+        public string Room => Place;
+
+        // UI-friendly formatted strings
+        public string StartTimeDisplay => StartTime.HasValue ? StartTime.Value.ToString(@"hh\:mm") : string.Empty;
+        public string EndTimeDisplay => EndTime.HasValue ? EndTime.Value.ToString(@"hh\:mm") : string.Empty;
+
+        public ClassTask(string name, int numofstuds, string place, int teacher, bool? isClass, TimeSpan? startTime, TimeSpan? endTime)
         {
-            this.Name = name;
-            this.NumOfStuds = numofstuds;
-            this.Place = place;
-            this.Teacher = teacher;
-            //this.StartTime = startTime;
-            //this.EndTime = endTime;
-
-            if (isCLass == false)
-            {
-                this.IsClass = false;
-            }
+            Name = name;
+            NumOfStuds = numofstuds;
+            Place = place;
+            Teacher = teacher;
+            IsClass = isClass ?? true;
 
             if (startTime == null && endTime != null)
             {
                 startTime = endTime - TimeSpan.FromHours(1);
             }
+
             if (endTime == null && startTime != null)
             {
                 endTime = startTime + TimeSpan.FromHours(1);
             }
+
+            StartTime = startTime;
+            EndTime = endTime;
         }
 
         public ClassTask()
         {
-            
         }
     }
 }
