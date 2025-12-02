@@ -32,6 +32,7 @@ namespace RoxfortNeptun.Models
                 await _connection.CreateTableAsync<Students>();
                 await _connection.CreateTableAsync<Teachers>();
                 await _connection.CreateTableAsync<ClassTask>();
+                await _connection.CreateTableAsync<StudentClassTask>(); // Add this line to create the StudentClassTask table
 
                 var studentCount = await _connection.Table<Students>().CountAsync();
                 if (studentCount == 0)
@@ -161,6 +162,23 @@ namespace RoxfortNeptun.Models
         public async Task<int> DeleteAsync<T>(T item) where T : IUser, new()
         {
             return await _connection.DeleteAsync(item);
+        }
+
+        public async Task<IEnumerable<ClassTask>> GetTasksForStudentAsync(int studentId)
+        {
+            var enrollments = await _connection.Table<StudentClassTask>()
+                                               .Where(e => e.StudentId == studentId && e.IsActive)
+                                               .ToListAsync();
+
+            if (enrollments == null || enrollments.Count == 0)
+                return Enumerable.Empty<ClassTask>();
+
+            var ids = enrollments.Select(e => e.ClassTaskId).Distinct().ToArray();
+            // Build parameter placeholders safely
+            var placeholders = string.Join(",", ids.Select((_, i) => $"@p{i}"));
+            var parameters = ids.Cast<object>().ToArray();
+            var sql = $"SELECT * FROM ClassTasks WHERE Id IN ({placeholders})";
+            return await _connection.QueryAsync<ClassTask>(sql, parameters);
         }
     }
 }

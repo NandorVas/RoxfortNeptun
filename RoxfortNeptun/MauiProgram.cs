@@ -25,7 +25,8 @@ namespace RoxfortNeptun
 
             // ViewModel-ek regisztrálása
             builder.Services.AddSingleton<MainViewModel>();
-            builder.Services.AddTransient<ProfilPageViewModel>();
+            builder.Services.AddSingleton<ProfilPageViewModel>();
+            builder.Services.AddSingleton<SchedulePageViewModel>();
 
             // Page-ek regisztrálása
             builder.Services.AddSingleton<MainPage>();

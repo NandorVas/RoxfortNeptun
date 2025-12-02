@@ -2,8 +2,9 @@ namespace RoxfortNeptun.Views;
 
 public partial class SchedulePage : ContentPage
 {
-	public SchedulePage()
-	{
-		InitializeComponent();
-	}
+    public SchedulePage(ViewModels.SchedulePageViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
 }
