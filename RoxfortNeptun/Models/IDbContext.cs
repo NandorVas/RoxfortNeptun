@@ -11,5 +11,8 @@ namespace RoxfortNeptun.Models
         Task<int> InsertDemoDataAsync();
         Task<int> UpdateAsync<T>(T item) where T : IUser, new();
         Task<IEnumerable<ClassTask>> GetClassTasksAsync(int studentId);
+        Task<int> UpdateClassTaskAsync(ClassTask task);
+        Task<int> InsertClassTaskAsync(ClassTask task, int? enrollStudentId = null);
+        Task<int> InsertStudentClassTaskAsync(StudentClassTask enrollment);
     }
 }

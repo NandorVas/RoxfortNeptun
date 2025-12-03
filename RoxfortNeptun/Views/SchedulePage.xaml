@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.SchedulePage"
              Title="Schedule">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New Class" IsEnabled="{Binding IsTeacher}"/>
+        <ToolbarItem Text="Add Student to Class" IsEnabled="{Binding IsTeacher}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding ClassTasks}">
+        <CollectionView x:Name="TasksCollectionView" ItemsSource="{Binding ClassTasks}" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="8" Padding="10" CornerRadius="8">

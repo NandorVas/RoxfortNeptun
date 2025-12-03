@@ -141,6 +141,22 @@ namespace RoxfortNeptun.Models
             return await GetClassTasksByIdsAsync(studentId); // already returns List<ClassTask>
         }
 
+        public async Task<int> InsertClassTaskAsync(ClassTask task, int? enrollStudentId = null)
+        {
+            return await _connection.InsertAsync(task);
+        }
+
+        public async Task<int> UpdateClassTaskAsync(ClassTask task)
+        {
+            if (task == null) throw new ArgumentNullException(nameof(task));
+            if (task == null) throw new ArgumentNullException(nameof(task));
+            return await _connection.UpdateAsync(task);
+        }
+        public async Task<int> InsertStudentClassTaskAsync(StudentClassTask enrollment)
+        {
+            return await _connection.InsertAsync(enrollment);
+        }
+
         private async void DemoTeachers(int teacherCount)
         {
             if (teacherCount == 0)
