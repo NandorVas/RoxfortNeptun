@@ -1,5 +1,4 @@
-﻿
-namespace RoxfortNeptun.Models
+﻿namespace RoxfortNeptun.Models
 {
     public interface IDbContext
     {
@@ -14,5 +13,8 @@ namespace RoxfortNeptun.Models
         Task<int> UpdateClassTaskAsync(ClassTask task);
         Task<int> InsertClassTaskAsync(ClassTask task, int? enrollStudentId = null);
         Task<int> InsertStudentClassTaskAsync(StudentClassTask enrollment);
+
+        // new helper to locate a class task by its name
+        Task<ClassTask?> GetClassTaskByNameAsync(string name);
     }
 }

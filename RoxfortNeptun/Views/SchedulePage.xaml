@@ -4,8 +4,8 @@
              x:Class="RoxfortNeptun.Views.SchedulePage"
              Title="Schedule">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New Class" IsEnabled="{Binding IsTeacher}"/>
-        <ToolbarItem Text="Add Student to Class" IsEnabled="{Binding IsTeacher}"/>
+        <ToolbarItem Text="New Class" IsEnabled="{Binding IsTeacher}" Clicked="OnNewClassClicked"/>
+        <ToolbarItem Text="Add Student to Class" IsEnabled="{Binding IsTeacher}" Clicked="OnAddStudentToClassClicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

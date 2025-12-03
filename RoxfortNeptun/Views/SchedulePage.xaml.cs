@@ -1,3 +1,4 @@
+using System;
 using RoxfortNeptun.ViewModels;
 using RoxfortNeptun.Models;
 
@@ -31,5 +32,17 @@ public partial class SchedulePage : ContentPage
 
         // Clear selection so the item can be selected again later
         TasksCollectionView.SelectedItem = null;
+    }
+
+    private async void OnNewClassClicked(object sender, EventArgs e)
+    {
+        // Navigate to AddClassPage (route must be registered in AppShell)
+        await Shell.Current.GoToAsync("AddClassPage");
+    }
+
+    private async void OnAddStudentToClassClicked(object sender, EventArgs e)
+    {
+        // open modal page for adding student to a class
+        await Shell.Current.GoToAsync("AddStudentToClassPage");
     }
 }

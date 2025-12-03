@@ -13,6 +13,8 @@ namespace RoxfortNeptun
             Routing.RegisterRoute("ProfilPage", typeof(ProfilPage));
             Routing.RegisterRoute("SchedulePage", typeof(SchedulePage));
             Routing.RegisterRoute("TaskPage", typeof(TaskPage));
+            Routing.RegisterRoute("AddClassPage", typeof(AddClassPage));
+            Routing.RegisterRoute("AddStudentToClassPage", typeof(AddStudentToClassPage));
         }
     }
 }

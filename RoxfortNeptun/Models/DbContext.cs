@@ -157,6 +157,13 @@ namespace RoxfortNeptun.Models
             return await _connection.InsertAsync(enrollment);
         }
 
+        // New helper: find class task by name
+        public async Task<ClassTask?> GetClassTaskByNameAsync(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return null;
+            return await _connection.Table<ClassTask>().Where(ct => ct.Name == name).FirstOrDefaultAsync();
+        }
+
         private async void DemoTeachers(int teacherCount)
         {
             if (teacherCount == 0)
