@@ -8,6 +8,14 @@
         <!-- Use BaseViewModel.Name (kept in sync with AuthService.CurrentUser) -->
         <Label Text="{Binding Name}" FontSize="24"/>
 
+        <Button Text="Check Conncetivity" 
+                Command="{Binding CheckConnectivityCommand}"/>
+
+        <Label Text="{Binding ConnectionType}" 
+               FontSize="18" 
+               TextColor="Blue"/>
+
+
         <!-- Use the inherited LogoutCommand from BaseViewModel -->
         <Button Text="Log Out"
                 Command="{Binding LogoutCommand}"/>
