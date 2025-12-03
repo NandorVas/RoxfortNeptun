@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RoxfortNeptun.Models;
 using RoxfortNeptun.Services;
 using Microsoft.Maui.Controls;
 
@@ -9,9 +8,6 @@ namespace RoxfortNeptun.ViewModels
     public partial class BaseViewModel: ObservableObject
     {
         protected readonly IAuthService _authService;
-
-        [ObservableProperty]
-        private IUser currentUser;
 
         [ObservableProperty]
         private bool isLoggedIn;
@@ -35,9 +31,8 @@ namespace RoxfortNeptun.ViewModels
 
         private void UpdateUserState()
         {
-            CurrentUser = _authService.CurrentUser;
             IsLoggedIn = _authService.IsAuthenticated;
-            Name = CurrentUser?.Name ?? "Vendég";
+            Name = _authService.CurrentUser?.Name ?? "Vendég";
         }
 
         [RelayCommand]

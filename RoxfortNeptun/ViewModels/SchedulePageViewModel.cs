@@ -25,7 +25,7 @@ namespace RoxfortNeptun.ViewModels
 
         public async Task LoadAsync()
         {
-            ClassTasks = await _db.GetClassTasksAsync(CurrentUser.Id);
+            ClassTasks = await _db.GetClassTasksAsync(_authService.CurrentUser.Id);
         }
     }
 }

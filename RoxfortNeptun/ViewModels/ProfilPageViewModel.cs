@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RoxfortNeptun.Models;
 using RoxfortNeptun.Services;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,6 @@ namespace RoxfortNeptun.ViewModels
 {
     public partial class ProfilPageViewModel : BaseViewModel, IConnectivity
     {
-        public IUser user => CurrentUser;
-
         public IEnumerable<ConnectionProfile> ConnectionProfiles => throw new NotImplementedException();
 
         [ObservableProperty]
@@ -64,8 +61,8 @@ namespace RoxfortNeptun.ViewModels
         {
             if (Application.Current is App app)
             {
-                app.SwitchToLogInApp();
                 ConnectionType = string.Empty;
+                app.SwitchToLogInApp();
             }
         }
     }

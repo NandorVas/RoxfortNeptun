@@ -1,0 +1,9 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             x:Class="RoxfortNeptun.Views.ProfilPage"
+             BackgroundColor="{DynamicResource Background}">
+  <VerticalStackLayout Padding="20" Spacing="12">
+    <Label Text="Profile" Style="{StaticResource CardTitle}" />
+    <Label Text="Student name will use implicit Label style" />
+    <Button Text="Edit profile" />
+  </VerticalStackLayout>
+</ContentPage>
