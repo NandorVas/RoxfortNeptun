@@ -9,22 +9,28 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <CollectionView x:Name="TasksCollectionView" ItemsSource="{Binding ClassTasks}" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Margin="8" Padding="10" CornerRadius="8">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontAttributes="Bold" />
-                            <Label Text="{Binding Place}" />
-                            <HorizontalStackLayout Spacing="12">
-                                <Label Text="{Binding StartTimeDisplay}" />
-                                <Label Text="–" />
-                                <Label Text="{Binding EndTimeDisplay}" />
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <VerticalStackLayout>
+            <CollectionView x:Name="TasksCollectionView" ItemsSource="{Binding ClassTasks}" SelectionMode="Single" SelectedItem="{Binding SelectedItem}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="8" Padding="10">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Place}" />
+                                <HorizontalStackLayout Spacing="12">
+                                    <Label Text="{Binding StartTimeDisplay}" />
+                                    <Label Text="–" />
+                                    <Label Text="{Binding EndTimeDisplay}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <HorizontalStackLayout Margin="10" Spacing="20" HorizontalOptions="Center">
+                <Button Text="Delete" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsTeacher}"/>
+                <Button Text="Edit" Command="{Binding EditCommand}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,5 +16,6 @@
 
         // new helper to locate a class task by its name
         Task<ClassTask?> GetClassTaskByNameAsync(string name);
+        Task DeleteClassTaskAsync(ClassTask selectedItem);
     }
 }

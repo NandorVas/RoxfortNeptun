@@ -267,5 +267,11 @@ namespace RoxfortNeptun.Models
                 }
             }
         }
+
+        public async Task DeleteClassTaskAsync(ClassTask selectedItem)
+        {
+            if(selectedItem == null) throw new ArgumentNullException(nameof(selectedItem));
+            await _connection.DeleteAsync(selectedItem);
+        }
     }
 }
