@@ -2,20 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.AddStudentToClassPage"
-             Title="Add Student to Class">
+             Title="Add Student to Class"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <Style x:Key="NeonLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="SectionLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#A9FFA9" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="NeonEntry" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="PlaceholderColor" Value="#7CFC00" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#39FF14" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="120" />
+        </Style>
+        <Style x:Key="NeonBorder" TargetType="Border">
+            <Setter Property="Margin" Value="6" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BackgroundColor" Value="#050505" />
+            <Setter Property="Stroke" Value="#39FF14" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="12">
-            <Label Text="Add student to class" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" />
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="14" Padding="18" WidthRequest="360">
+            <Label Text="Add student to class" Style="{StaticResource NeonLabel}" FontAttributes="Bold" FontSize="20" />
 
-            <Label Text="Class name" />
-            <Entry x:Name="ClassNameEntry" Placeholder="Enter class name" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Class name" Style="{StaticResource SectionLabel}" />
+                    <Entry x:Name="ClassNameEntry" Placeholder="Enter class name" Style="{StaticResource NeonEntry}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Label Text="Student Neptun code" />
-            <Entry x:Name="NeptunEntry" Placeholder="e.g. HPOTTR" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Student Neptun code" Style="{StaticResource SectionLabel}" />
+                    <Entry x:Name="NeptunEntry" Placeholder="e.g. HPOTTR" Style="{StaticResource NeonEntry}" MaxLength="6" />
+                </VerticalStackLayout>
+            </Border>
 
-            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
-                <Button Text="Save" Clicked="OnSaveClicked" />
-                <Button Text="Cancel" Clicked="OnCancelClicked" />
+            <HorizontalStackLayout Spacing="18" HorizontalOptions="Center">
+                <Button Text="Save" Clicked="OnSaveClicked" Style="{StaticResource NeonButton}" />
+                <Button Text="Cancel" Clicked="OnCancelClicked" Style="{StaticResource NeonButton}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

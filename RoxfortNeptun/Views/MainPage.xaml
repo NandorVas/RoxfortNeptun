@@ -2,38 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.MainPage"
-             Title="Login">
+             Title="Login"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <Style x:Key="NeonLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="SectionLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#A9FFA9" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="NeonEntry" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="PlaceholderColor" Value="#7CFC00" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#39FF14" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="250" />
+        </Style>
+        <Style x:Key="AccentButton" TargetType="Button" BasedOn="{StaticResource NeonButton}">
+            <Setter Property="BackgroundColor" Value="#0F0F0F" />
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="BorderColor" Value="#39FF14" />
+            <Setter Property="BorderWidth" Value="2" />
+        </Style>
+        <Style x:Key="NeonBorder" TargetType="Border">
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="Padding" Value="14" />
+            <Setter Property="BackgroundColor" Value="#050505" />
+            <Setter Property="Stroke" Value="#39FF14" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+    </ContentPage.Resources>
 
     <Grid ColumnDefinitions="0.2*, 0.6*, 0.2*">
         <BoxView Grid.Column="0" BackgroundColor="Transparent" />
-        <ScrollView
-            Grid.Column="1">
-            <VerticalStackLayout
-                Padding="20" Spacing="15">
-                <Image 
-                    Source="logo.webp"
-                    HeightRequest="100"
-                    WidthRequest="100"/>
-                <Label Text="Username"/>
-                <Entry Placeholder="Enter your username" Text="{Binding Username}" x:Name="UsernameEntry"/>
+        <ScrollView Grid.Column="1">
+            <VerticalStackLayout Padding="20" Spacing="18" HorizontalOptions="Center" VerticalOptions="Center">
 
-                <Label Text="Password"/>
-                <Entry Placeholder="Enter your password" IsPassword="True" Text="{Binding Password}" x:Name="PasswordEntry"/>
-                <HorizontalStackLayout HorizontalOptions="Center">
-                    <Button Text="Login"
-                            WidthRequest="250"
-                            Margin="5"
-                            Command="{Binding LoginCommand}"/>
-                    <Button Text="Forgot Password"
-                            WidthRequest="250"
-                            Margin="5"
-                            Command="{Binding ForgotPasswordCommand}"
-                            IsVisible="True"/>
-                </HorizontalStackLayout>
+                <Border Style="{StaticResource NeonBorder}" WidthRequest="360">
+                    <VerticalStackLayout Spacing="16" Padding="6">
+                        <Image Source="logo.webp" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" />
+
+                        <Label Text="Welcome" Style="{StaticResource NeonLabel}" FontAttributes="Bold" FontSize="22" />
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Username" Style="{StaticResource SectionLabel}" />
+                            <Entry Placeholder="Enter your username" Text="{Binding Username}" x:Name="UsernameEntry" Style="{StaticResource NeonEntry}" />
+
+                            <Label Text="Password" Style="{StaticResource SectionLabel}" />
+                            <Entry Placeholder="Enter your password" IsPassword="True" Text="{Binding Password}" x:Name="PasswordEntry" Style="{StaticResource NeonEntry}" />
+                        </VerticalStackLayout>
+
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                            <Button Text="Login" WidthRequest="130" Command="{Binding LoginCommand}" Style="{StaticResource NeonButton}" />
+                            <Button Text="Forgot PSW" WidthRequest="130" Command="{Binding ForgotPasswordCommand}" Style="{StaticResource AccentButton}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
             </VerticalStackLayout>
         </ScrollView>
         <BoxView Grid.Column="2" BackgroundColor="Transparent" />
     </Grid>
-
 
 </ContentPage>

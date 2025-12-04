@@ -2,9 +2,44 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.TaskPage"
-             Title="Tasks">
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Button Text="Pick and Share File" Clicked="OnShareFileClicked" />
-        <Label x:Name="FileNameLabel" Text="No file selected" />
+             Title="Tasks"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <Style x:Key="NeonLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="NeonSubLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#A9FFA9" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#39FF14" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="200" />
+        </Style>
+        <Style x:Key="NeonBorder" TargetType="Border">
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="Padding" Value="14" />
+            <Setter Property="BackgroundColor" Value="#050505" />
+            <Setter Property="Stroke" Value="#39FF14" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="18" Spacing="16">
+        <Border Style="{StaticResource NeonBorder}" WidthRequest="360">
+            <VerticalStackLayout Spacing="12" Padding="6" HorizontalOptions="Center">
+                <Label Text="Files" Style="{StaticResource NeonLabel}" FontAttributes="Bold" FontSize="20" />
+
+                <Button Text="Pick and Share File" Clicked="OnShareFileClicked" Style="{StaticResource NeonButton}" />
+
+                <Label x:Name="FileNameLabel" Text="No file selected" Style="{StaticResource NeonSubLabel}" />
+            </VerticalStackLayout>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

@@ -2,34 +2,63 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.SchedulePage"
-             Title="Schedule">
+             Title="Schedule"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <Style x:Key="NeonLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#39FF14" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Padding" Value="12,6" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="NeonBorder" TargetType="Border">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="BackgroundColor" Value="#050505"/>
+            <Setter Property="Stroke" Value="#39FF14"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="New Class" IsEnabled="{Binding IsTeacher}" Clicked="OnNewClassClicked"/>
         <ToolbarItem Text="Add Student to Class" IsEnabled="{Binding IsTeacher}" Clicked="OnAddStudentToClassClicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <VerticalStackLayout>
-            <CollectionView x:Name="TasksCollectionView" ItemsSource="{Binding ClassTasks}" SelectionMode="Single" SelectedItem="{Binding SelectedItem}">
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="18" Padding="12">
+            <Label Text="Schedule" Style="{StaticResource NeonLabel}" FontAttributes="Bold" FontSize="22" />
+            
+            <CollectionView x:Name="TasksCollectionView" ItemsSource="{Binding ClassTasks}" SelectionMode="Single" SelectedItem="{Binding SelectedItem}" WidthRequest="360" HeightRequest="420">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="8" Padding="10">
+                        <Border Style="{StaticResource NeonBorder}">
+                            <!--Margin="6" Padding="12" BackgroundColor="#050505" Stroke="#39FF14" StrokeThickness="2">-->
                             <VerticalStackLayout>
-                                <Label Text="{Binding Name}" FontAttributes="Bold" />
-                                <Label Text="{Binding Place}" />
-                                <HorizontalStackLayout Spacing="12">
-                                    <Label Text="{Binding StartTimeDisplay}" />
-                                    <Label Text="–" />
-                                    <Label Text="{Binding EndTimeDisplay}" />
+                                <Label Text="{Binding Name}" Style="{StaticResource NeonLabel}" FontAttributes="Bold" />
+                                <Label Text="{Binding Place}" Style="{StaticResource NeonLabel}" FontSize="12" />
+                                <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                                    <Label Text="{Binding StartTimeDisplay}" Style="{StaticResource NeonLabel}"/>
+                                    <Label Text="–" Style="{StaticResource NeonLabel}"/>
+                                    <Label Text="{Binding EndTimeDisplay}" Style="{StaticResource NeonLabel}"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <HorizontalStackLayout Margin="10" Spacing="20" HorizontalOptions="Center">
-                <Button Text="Delete" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsTeacher}"/>
-                <Button Text="Edit" Command="{Binding EditCommand}"/>
+
+            <HorizontalStackLayout IsVisible="{Binding IsTeacher}" Margin="10" Spacing="20" HorizontalOptions="Center">
+                <Button Text="Delete" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsTeacher}" Style="{StaticResource NeonButton}" />
+                <Button Text="Edit" Command="{Binding EditCommand}" IsEnabled="{Binding IsTeacher}" Style="{StaticResource NeonButton}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ContentPage.Content>

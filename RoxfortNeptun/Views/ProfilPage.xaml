@@ -2,22 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.ProfilPage"
-             Title="Profil">
-    <VerticalStackLayout Padding="20" Spacing="8">
-        <Label Text="Current student:" FontAttributes="Bold"/>
-        <!-- Use BaseViewModel.Name (kept in sync with AuthService.CurrentUser) -->
-        <Label Text="{Binding Name}" FontSize="24"/>
+             Title="Profil"
+             BackgroundColor="Black">
 
-        <Button Text="Check Conncetivity" 
-                Command="{Binding CheckConnectivityCommand}"/>
+    <ContentPage.Resources>
+        <Style x:Key="NeonLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="SectionLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#A9FFA9" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#39FF14" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="160" />
+        </Style>
+        <Style x:Key="AccentButton" TargetType="Button" BasedOn="{StaticResource NeonButton}">
+            <Setter Property="BackgroundColor" Value="#0F0F0F" />
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="BorderColor" Value="#39FF14" />
+            <Setter Property="BorderWidth" Value="2" />
+        </Style>
+        <Style x:Key="NeonBorder" TargetType="Border">
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="Padding" Value="14" />
+            <Setter Property="BackgroundColor" Value="#050505" />
+            <Setter Property="Stroke" Value="#39FF14" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+    </ContentPage.Resources>
 
-        <Label Text="{Binding ConnectionType}" 
-               FontSize="18" 
-               TextColor="Blue"/>
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12" Padding="18">
+        <Border Style="{StaticResource NeonBorder}" WidthRequest="600">
+            <VerticalStackLayout Spacing="12" Padding="6" HorizontalOptions="Center">
+                <Label Text="Current student:" Style="{StaticResource SectionLabel}" />
+                <Label Text="{Binding Name}" Style="{StaticResource NeonLabel}" FontSize="24" FontAttributes="Bold" />
 
+                <HorizontalStackLayout Spacing="12" HorizontalOptions="Center" Margin="8">
+                    <Button Text="Check Connectivity" Command="{Binding CheckConnectivityCommand}" Style="{StaticResource NeonButton}" />
+                    <Button Text="Log Out" Command="{Binding LogoutCommand}" Style="{StaticResource AccentButton}" />
+                </HorizontalStackLayout>
 
-        <!-- Use the inherited LogoutCommand from BaseViewModel -->
-        <Button Text="Log Out"
-                Command="{Binding LogoutCommand}"/>
+                <Label Text="{Binding ConnectionType}" FontSize="18" TextColor="#7CFC00" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

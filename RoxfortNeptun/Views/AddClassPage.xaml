@@ -2,34 +2,96 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoxfortNeptun.Views.AddClassPage"
-             Title="Add Class">
+             Title="Add Class"
+             BackgroundColor="Black">   
+
+    <ContentPage.Resources>
+        <Style x:Key="NeonLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="NeonSubLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#7CFC00" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#39FF14" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="140" />
+        </Style>
+        <Style x:Key="NeonBorder" TargetType="Border">
+            <Setter Property="Margin" Value="6" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BackgroundColor" Value="#050505" />
+            <Setter Property="Stroke" Value="#39FF14" />
+            <Setter Property="StrokeThickness" Value="2" />
+        </Style>
+        <Style x:Key="NeonEntry" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="#39FF14" />
+            <Setter Property="PlaceholderColor" Value="#7CFC00" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+        <Style x:Key="SectionLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#A9FFA9" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </ContentPage.Resources>
+
+    
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="12">
-            <Label Text="Add new class" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" />
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="14" Padding="18" WidthRequest="360">
+            <Label Text="Add new class" Style="{StaticResource NeonLabel}" FontAttributes="Bold" FontSize="20" />
 
-            <Label Text="Name" />
-            <Entry x:Name="NameEntry" Placeholder="Class name" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Name" Style="{StaticResource SectionLabel}" />
+                    <Entry x:Name="NameEntry" Placeholder="Class name" Style="{StaticResource NeonEntry}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Label Text="Number of students" />
-            <Entry x:Name="NumOfStudsEntry" Placeholder="e.g. 20" Keyboard="Numeric" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Number of students" Style="{StaticResource SectionLabel}" />
+                    <Entry x:Name="NumOfStudsEntry" Placeholder="e.g. 20" Keyboard="Numeric" Style="{StaticResource NeonEntry}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Label Text="Place / Room" />
-            <Entry x:Name="PlaceEntry" Placeholder="Room, e.g. B012" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Place / Room" Style="{StaticResource SectionLabel}" />
+                    <Entry x:Name="PlaceEntry" Placeholder="Room, e.g. B012" Style="{StaticResource NeonEntry}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <HorizontalStackLayout VerticalOptions="Center" Spacing="10">
-                <Label Text="Is class?" VerticalOptions="Center" />
-                <Switch x:Name="IsClassSwitch" IsToggled="True" />
-            </HorizontalStackLayout>
+            <Border Style="{StaticResource NeonBorder}">
+                <HorizontalStackLayout VerticalOptions="Center" Spacing="10" HorizontalOptions="Center">
+                    <Label Text="Is class?" Style="{StaticResource SectionLabel}" VerticalOptions="Center" />
+                    <Switch x:Name="IsClassSwitch" IsToggled="True" />
+                </HorizontalStackLayout>
+            </Border>
 
-            <Label Text="Start time" />
-            <TimePicker x:Name="StartTimePicker" Time="09:00:00" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Start time" Style="{StaticResource SectionLabel}" />
+                    <TimePicker x:Name="StartTimePicker" Time="09:00:00" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Label Text="End time" />
-            <TimePicker x:Name="EndTimePicker" Time="10:00:00" />
+            <Border Style="{StaticResource NeonBorder}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="End time" Style="{StaticResource SectionLabel}" />
+                    <TimePicker x:Name="EndTimePicker" Time="10:00:00" />
+                </VerticalStackLayout>
+            </Border>
 
-            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
-                <Button Text="Save" x:Name="SaveButton" Clicked="OnSaveClicked" />
-                <Button Text="Cancel" x:Name="CancelButton" Clicked="OnCancelClicked" />
+            <HorizontalStackLayout Spacing="18" HorizontalOptions="Center">
+                <Button Text="Save" x:Name="SaveButton" Clicked="OnSaveClicked" Style="{StaticResource NeonButton}" />
+                <Button Text="Cancel" x:Name="CancelButton" Clicked="OnCancelClicked" Style="{StaticResource NeonButton}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
